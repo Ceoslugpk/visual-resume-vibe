@@ -25,8 +25,20 @@ const ThemeToggle: React.FC = () => {
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
+    
+    // Add transition class to body for smooth color transitions
+    document.body.classList.add('theme-transition');
+    
+    // Toggle dark mode class
     document.documentElement.classList.toggle("dark", newTheme === "dark");
+    
+    // Update local storage
     localStorage.setItem("theme", newTheme);
+    
+    // Remove transition class after transition completes
+    setTimeout(() => {
+      document.body.classList.remove('theme-transition');
+    }, 600);
   };
 
   if (!isMounted) return null;
@@ -36,7 +48,7 @@ const ThemeToggle: React.FC = () => {
       variant="outline" 
       size="icon" 
       onClick={toggleTheme}
-      className="rounded-full w-9 h-9 bg-background border-border transition-all duration-500 relative overflow-hidden"
+      className="rounded-full w-10 h-10 bg-background/80 backdrop-blur-md border-border transition-all duration-500 relative overflow-hidden hover:shadow-lg dark:hover:shadow-primary/20"
       aria-label="Toggle theme"
     >
       <div className="absolute inset-0 flex items-center justify-center">
@@ -57,13 +69,20 @@ const ThemeToggle: React.FC = () => {
       </div>
       <span className="sr-only">{theme === "light" ? "Dark mode" : "Light mode"}</span>
       
-      {/* Highlight effect on toggle */}
+      {/* Enhanced highlight effect on toggle */}
       <div className={`
-        absolute inset-0 rounded-full transition-opacity duration-500
+        absolute inset-0 rounded-full transition-all duration-700
+        before:absolute before:inset-0 before:rounded-full before:animate-spin-slow before:border before:opacity-0
+        dark:before:opacity-100 dark:before:border-primary/20
         bg-gradient-to-tr from-yellow-300/20 to-orange-300/20
-        dark:from-blue-400/20 dark:to-purple-500/20
+        dark:from-blue-500/30 dark:to-purple-500/30
         ${theme === "light" ? "opacity-100" : "opacity-0"}
       `}></div>
+      
+      {/* Radial ripple effect on click */}
+      <div className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
+        <span className="absolute inset-0 transform scale-0 rounded-full bg-primary/10 animate-ripple"></span>
+      </div>
     </Button>
   );
 };

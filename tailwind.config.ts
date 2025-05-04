@@ -152,6 +152,23 @@ export default {
 					'0%': { backgroundPosition: '0% 50%' },
 					'50%': { backgroundPosition: '100% 50%' },
 					'100%': { backgroundPosition: '0% 50%' }
+				},
+				'ripple': {
+					'0%': { transform: 'scale(0)', opacity: '0.6' },
+					'100%': { transform: 'scale(4)', opacity: '0' }
+				},
+				'shimmer': {
+					'0%': { backgroundPosition: '200% 0' },
+					'100%': { backgroundPosition: '-200% 0' },
+				},
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'morph': {
+					'0%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
+					'50%': { borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' },
+					'100%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' }
 				}
 			},
 			animation: {
@@ -169,7 +186,11 @@ export default {
 				'progress': 'progress 1s ease-out forwards',
 				'glow': 'glow 2s linear infinite',
 				'gradient-move': 'gradient-move 3s ease infinite',
-				'pulse': 'pulse 4s ease-in-out infinite'
+				'pulse': 'pulse 4s ease-in-out infinite',
+				'ripple': 'ripple 1s ease-out',
+				'shimmer': 'shimmer 2s infinite',
+				'spin-slow': 'spin-slow 12s linear infinite',
+				'morph': 'morph 8s ease-in-out infinite'
 			}
 		}
 	},
