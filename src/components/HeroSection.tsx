@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const HeroSection: React.FC = () => {
   const profileRef = useRef<HTMLDivElement>(null);
@@ -73,9 +74,12 @@ const HeroSection: React.FC = () => {
             className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-xl opacity-0 animate-scale"
             style={{animationFillMode: 'forwards'}}
           >
-            <div className="w-full h-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-8xl font-bold">
-              JD
-            </div>
+            <Avatar className="w-full h-full">
+              <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1800&auto=format&fit=crop" alt="John Doe" className="object-cover w-full h-full" />
+              <AvatarFallback className="w-full h-full bg-gradient-to-br from-primary to-secondary text-white text-8xl font-bold flex items-center justify-center">
+                JD
+              </AvatarFallback>
+            </Avatar>
             {/* Animated glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/30 to-secondary/0 animate-glow"></div>
           </div>
