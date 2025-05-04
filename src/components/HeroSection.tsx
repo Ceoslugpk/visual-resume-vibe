@@ -5,23 +5,49 @@ import { ArrowDown } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   const profileRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   
   useEffect(() => {
     // Add floating animation after component mounts
     if (profileRef.current) {
       profileRef.current.classList.add('animate-float');
     }
+    
+    // Animate gradient text
+    if (titleRef.current) {
+      const animateGradient = () => {
+        let hue = 0;
+        
+        const interval = setInterval(() => {
+          hue = (hue + 1) % 360;
+          if (titleRef.current) {
+            titleRef.current.style.background = `linear-gradient(135deg, hsl(${hue}, 80%, 60%), hsl(${(hue + 60) % 360}, 80%, 60%))`;
+            titleRef.current.style.backgroundClip = 'text';
+            titleRef.current.style.webkitBackgroundClip = 'text';
+          }
+        }, 100);
+        
+        return () => clearInterval(interval);
+      };
+      
+      const cleanup = animateGradient();
+      return cleanup;
+    }
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center pt-20">
-      <div className="container mx-auto px-4 py-16 lg:py-20 flex flex-col lg:flex-row items-center gap-12">
+    <section id="home" className="min-h-screen flex flex-col justify-center pt-20 relative overflow-hidden">
+      {/* Gradient Background Elements */}
+      <div className="absolute -top-[20%] -left-[10%] w-[40%] h-[40%] bg-primary/20 dark:bg-primary/10 rounded-full blur-[100px] animate-pulse"></div>
+      <div className="absolute -bottom-[20%] -right-[10%] w-[40%] h-[40%] bg-secondary/20 dark:bg-secondary/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+      
+      <div className="container mx-auto px-4 py-16 lg:py-20 flex flex-col lg:flex-row items-center gap-12 relative z-10">
         <div className="w-full lg:w-1/2 space-y-6 order-2 lg:order-1">
           <p className="text-base md:text-lg font-medium text-primary animate-fade-in opacity-0" style={{animationFillMode: 'forwards'}}>
             👋 Hello, nice to meet you
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-delay-1 opacity-0" style={{animationFillMode: 'forwards'}}>
-            I'm <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">John Doe</span>
+            I'm <span ref={titleRef} className="text-transparent">John Doe</span>
           </h1>
           <h2 className="text-2xl md:text-3xl font-medium text-foreground/80 animate-fade-in-delay-2 opacity-0" style={{animationFillMode: 'forwards'}}>
             Full Stack Developer & UI/UX Designer
@@ -35,7 +61,7 @@ const HeroSection: React.FC = () => {
               <span className="relative z-10">Download CV</span>
               <span className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" asChild className="backdrop-blur-sm dark:bg-background/30 dark:border-white/10">
               <a href="#contact">Contact Me</a>
             </Button>
           </div>
@@ -50,6 +76,8 @@ const HeroSection: React.FC = () => {
             <div className="w-full h-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-8xl font-bold">
               JD
             </div>
+            {/* Animated glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/30 to-secondary/0 animate-glow"></div>
           </div>
         </div>
       </div>

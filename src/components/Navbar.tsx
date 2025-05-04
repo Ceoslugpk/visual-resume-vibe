@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +36,7 @@ const Navbar: React.FC = () => {
   return (
     <nav 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 dark:bg-resume-dark/90 backdrop-blur-sm shadow-md' : ''
+        isScrolled ? 'bg-white/90 dark:bg-background/90 backdrop-blur-sm shadow-md' : ''
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -46,15 +47,8 @@ const Navbar: React.FC = () => {
           Portfolio
         </a>
         
-        {/* Mobile menu button */}
-        <div className="block md:hidden">
-          <Button variant="ghost" onClick={toggleMenu} className="text-foreground">
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
-        </div>
-        
         {/* Desktop navigation */}
-        <ul className="hidden md:flex space-x-8">
+        <ul className="hidden md:flex space-x-8 items-center">
           {navLinks.map((link, index) => (
             <li key={link.name} className={`animate-fade-in-delay-${index + 1} opacity-0`} style={{animationFillMode: 'forwards'}}>
               <a 
@@ -65,7 +59,18 @@ const Navbar: React.FC = () => {
               </a>
             </li>
           ))}
+          <li className="animate-fade-in-delay-4 opacity-0" style={{animationFillMode: 'forwards'}}>
+            <ThemeToggle />
+          </li>
         </ul>
+        
+        {/* Mobile menu button */}
+        <div className="flex md:hidden items-center gap-4">
+          <ThemeToggle />
+          <Button variant="ghost" onClick={toggleMenu} className="text-foreground">
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </Button>
+        </div>
       </div>
       
       {/* Mobile navigation */}

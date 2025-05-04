@@ -12,10 +12,18 @@ import ScrollToTop from '../components/ScrollToTop';
 const Index = () => {
   useEffect(() => {
     document.title = 'John Doe | Developer & Designer';
+    
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      document.documentElement.classList.add("dark");
+    }
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <HeroSection />
       <AboutSection />

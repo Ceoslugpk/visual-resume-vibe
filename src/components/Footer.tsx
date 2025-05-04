@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card py-8 border-t border-border">
+    <footer className="bg-card py-8 border-t border-border dark:bg-background/50 dark:border-border">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
               © {currentYear} All Rights Reserved
             </p>
             <p className="text-sm mt-1">
-              Designed & Built with <span className="text-primary">♥</span>
+              Designed & Built with <span className="text-red-500 animate-pulse">♥</span>
             </p>
           </div>
         </div>

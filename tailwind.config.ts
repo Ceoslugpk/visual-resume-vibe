@@ -143,6 +143,15 @@ export default {
 				'progress': {
 					'0%': { width: '0%' },
 					'100%': { width: 'var(--progress-width)' }
+				},
+				'glow': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100%)' }
+				},
+				'gradient-move': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' }
 				}
 			},
 			animation: {
@@ -157,7 +166,10 @@ export default {
 				'fade-in-left': 'fade-in-left 0.7s ease-out forwards',
 				'float': 'float 6s ease-in-out infinite',
 				'scale': 'scale 0.5s ease-out forwards',
-				'progress': 'progress 1s ease-out forwards'
+				'progress': 'progress 1s ease-out forwards',
+				'glow': 'glow 2s linear infinite',
+				'gradient-move': 'gradient-move 3s ease infinite',
+				'pulse': 'pulse 4s ease-in-out infinite'
 			}
 		}
 	},
