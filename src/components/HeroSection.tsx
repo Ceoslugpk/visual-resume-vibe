@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Terminal } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const HeroSection: React.FC = () => {
@@ -15,120 +15,100 @@ const HeroSection: React.FC = () => {
       profileRef.current.classList.add('animate-float');
     }
     
-    // Animate gradient text
-    if (titleRef.current) {
-      const animateGradient = () => {
-        let hue = 0;
+    // Terminal typing effect for text
+    const startTypingAnimation = () => {
+      const text = "John Doe";
+      const terminalTitle = document.getElementById('terminal-title');
+      
+      if (terminalTitle) {
+        terminalTitle.innerHTML = '';
+        terminalTitle.style.opacity = '1';
         
-        const interval = setInterval(() => {
-          hue = (hue + 1) % 360;
-          if (titleRef.current) {
-            titleRef.current.style.background = `linear-gradient(135deg, hsl(${hue}, 80%, 60%), hsl(${(hue + 60) % 360}, 80%, 60%))`;
-            titleRef.current.style.backgroundClip = 'text';
-            titleRef.current.style.webkitBackgroundClip = 'text';
+        let i = 0;
+        const typeInterval = setInterval(() => {
+          if (i < text.length) {
+            terminalTitle.innerHTML += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(typeInterval);
+            
+            // Add blinking cursor after typing
+            const cursor = document.createElement('span');
+            cursor.className = 'inline-block w-2 h-5 bg-green-500 dark:bg-green-400 ml-1 animate-blink';
+            terminalTitle.appendChild(cursor);
           }
-        }, 100);
-        
-        return () => clearInterval(interval);
-      };
-      
-      const cleanup = animateGradient();
-      return cleanup;
-    }
-
-    // Add parallax effect
-    if (containerRef.current) {
-      const handleMouseMove = (e: MouseEvent) => {
-        const elements = containerRef.current?.querySelectorAll('.parallax');
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        
-        elements?.forEach(elem => {
-          const el = elem as HTMLElement;
-          const speed = parseFloat(el.getAttribute('data-speed') || '0.05');
-          const moveX = (x - 0.5) * speed * 50;
-          const moveY = (y - 0.5) * speed * 50;
-          el.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-      };
-      
-      document.addEventListener('mousemove', handleMouseMove);
-      return () => document.removeEventListener('mousemove', handleMouseMove);
-    }
+        }, 150);
+      }
+    };
+    
+    setTimeout(startTypingAnimation, 500);
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center pt-20 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute -top-[20%] -left-[10%] w-[40%] h-[40%] bg-primary/20 dark:bg-primary/10 rounded-full blur-[100px] animate-pulse parallax" data-speed="0.03"></div>
-      <div className="absolute -bottom-[20%] -right-[10%] w-[40%] h-[40%] bg-secondary/20 dark:bg-secondary/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }}></div>
-      
-      {/* Futuristic grid overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDMpIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6Ii8+PC9nPjwvc3ZnPg==')] pointer-events-none dark:opacity-50 opacity-20"></div>
+    <section id="home" className="min-h-screen flex flex-col justify-center pt-20 relative overflow-hidden dark:bg-black">
+      {/* Terminal-themed Background */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDAsIDI1NSwgMCwgMC4wMykiPjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiLz48L2c+PC9zdmc+')] pointer-events-none dark:opacity-20 opacity-5"></div>
       
       <div ref={containerRef} className="container mx-auto px-4 py-16 lg:py-20 flex flex-col lg:flex-row items-center gap-12 relative z-10">
         <div className="w-full lg:w-1/2 space-y-6 order-2 lg:order-1">
-          <p className="text-base md:text-lg font-medium text-primary animate-fade-in opacity-0 parallax" data-speed="0.05" style={{animationFillMode: 'forwards'}}>
-            👋 Hello, nice to meet you
-          </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-delay-1 opacity-0 parallax" data-speed="0.02" style={{animationFillMode: 'forwards'}}>
-            I'm <span ref={titleRef} className="text-transparent relative">
-              John Doe
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary/0 via-primary to-secondary/0 opacity-80 dark:opacity-90"></span>
+          <div className="text-base md:text-lg font-medium text-primary dark:text-green-400 animate-fade-in opacity-0 terminal-prompt" style={{animationFillMode: 'forwards'}}>
+            $ whoami
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-delay-1 opacity-0" style={{animationFillMode: 'forwards'}}>
+            I'm <span id="terminal-title" className="text-black dark:text-green-400 relative opacity-0">
+              
             </span>
           </h1>
-          <h2 className="text-2xl md:text-3xl font-medium text-foreground/80 animate-fade-in-delay-2 opacity-0 parallax" data-speed="0.04" style={{animationFillMode: 'forwards'}}>
-            Full Stack Developer & UI/UX Designer
+          <h2 className="text-2xl md:text-3xl font-medium text-foreground/80 dark:text-green-300/80 animate-fade-in-delay-2 opacity-0 terminal-prompt" style={{animationFillMode: 'forwards'}}>
+            Security Researcher & Developer
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl animate-fade-in-delay-3 opacity-0" style={{animationFillMode: 'forwards'}}>
-            I create beautiful, functional, and accessible web experiences
-            with a focus on animation and interactivity.
+          <p className="text-lg text-muted-foreground dark:text-green-400/60 max-w-xl animate-fade-in-delay-3 opacity-0 font-mono" style={{animationFillMode: 'forwards'}}>
+            I build secure systems and find vulnerabilities others miss.
+            My code is my shield, terminal is my weapon.
           </p>
           <div className="flex flex-wrap gap-4 pt-4 animate-fade-in-delay-4 opacity-0" style={{animationFillMode: 'forwards'}}>
-            <Button size="lg" className="relative overflow-hidden group">
+            <Button size="lg" className="dark:terminal-button dark:border-green-500 dark:text-green-400 relative overflow-hidden group">
+              <Terminal className="mr-2 h-4 w-4" />
               <span className="relative z-10">Download CV</span>
-              <span className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              {/* Button glow effect */}
-              <span className="absolute -inset-8 -z-10 hidden dark:block rounded-full blur-xl bg-secondary/20 group-hover:bg-secondary/30 transition-all duration-500"></span>
+              <span className="absolute inset-0 bg-white dark:bg-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Button>
-            <Button size="lg" variant="outline" asChild className="backdrop-blur-sm dark:bg-background/30 dark:border-white/10 relative group">
+            <Button size="lg" variant="outline" asChild className="backdrop-blur-sm dark:bg-black/30 dark:border-green-500/40 dark:text-green-400 relative group">
               <a href="#contact">
                 <span className="relative z-10">Contact Me</span>
-                {/* Button glow effect */}
-                <span className="absolute -inset-8 -z-10 hidden dark:block rounded-full blur-xl bg-secondary/10 group-hover:bg-secondary/20 transition-all duration-500"></span>
+                <span className="absolute inset-0 bg-primary/5 dark:bg-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </a>
             </Button>
           </div>
         </div>
         
-        <div className="w-full lg:w-1/2 order-1 lg:order-2 flex justify-center parallax" data-speed="0.06">
+        <div className="w-full lg:w-1/2 order-1 lg:order-2 flex justify-center">
           <div 
             ref={profileRef} 
-            className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-xl opacity-0 animate-scale"
+            className="relative w-64 h-64 md:w-80 md:h-80 overflow-hidden border-4 border-black/10 dark:border-green-500/30 shadow-xl opacity-0 animate-scale bg-white dark:bg-black"
             style={{animationFillMode: 'forwards'}}
           >
-            <Avatar className="w-full h-full">
-              <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1800&auto=format&fit=crop" alt="John Doe" className="object-cover w-full h-full" />
-              <AvatarFallback className="w-full h-full bg-gradient-to-br from-primary to-secondary text-white text-8xl font-bold flex items-center justify-center">
+            <Avatar className="w-full h-full rounded-none">
+              <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1800&auto=format&fit=crop" alt="John Doe" className="object-cover w-full h-full grayscale" />
+              <AvatarFallback className="w-full h-full bg-black dark:bg-black text-white dark:text-green-400 text-8xl font-bold flex items-center justify-center rounded-none">
                 JD
               </AvatarFallback>
             </Avatar>
             
-            {/* Animated border effect */}
-            <div className="absolute inset-0 rounded-full border-4 border-transparent animate-spin-slow pointer-events-none" style={{ 
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) border-box',
-              WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
-              WebkitMaskComposite: 'xor',
-              maskComposite: 'exclude',
-              animationDuration: '8s'
+            {/* Terminal-styled border effect */}
+            <div className="absolute inset-0 border-4 border-transparent animate-pulse pointer-events-none opacity-0 dark:opacity-100" style={{ 
+              border: '1px solid rgba(0, 255, 0, 0.3)',
+              boxShadow: '0 0 10px rgba(0, 255, 0, 0.2), inset 0 0 5px rgba(0, 255, 0, 0.2)',
+              animationDuration: '3s'
             }}></div>
             
-            {/* Animated glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/30 to-secondary/0 animate-glow"></div>
+            {/* Scan line animation */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 dark:via-green-500/10 to-transparent animate-scan"></div>
             
-            {/* Futuristic elements */}
-            <div className="absolute top-5 right-5 w-4 h-4 bg-primary rounded-full animate-pulse"></div>
-            <div className="absolute bottom-8 left-8 w-3 h-3 bg-secondary rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+            {/* Terminal status indicators */}
+            <div className="absolute top-3 right-3 flex space-x-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="w-3 h-3 bg-white dark:bg-green-500/50 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+            </div>
           </div>
         </div>
       </div>
@@ -136,13 +116,12 @@ const HeroSection: React.FC = () => {
       <div className="flex justify-center pb-8 animate-fade-in-delay-4 opacity-0" style={{animationFillMode: 'forwards'}}>
         <a 
           href="#about" 
-          className="flex flex-col items-center text-muted-foreground hover:text-primary transition-colors duration-300 group"
+          className="flex flex-col items-center text-muted-foreground dark:text-green-400/60 hover:text-primary dark:hover:text-green-400 transition-colors duration-300 group"
         >
-          <span className="mb-2 relative">
-            Scroll Down
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+          <span className="mb-2 relative terminal-prompt">
+            scroll_down
           </span>
-          <ArrowDown className="animate-bounce" />
+          <ArrowDown className="animate-bounce dark:text-green-400" />
         </a>
       </div>
     </section>

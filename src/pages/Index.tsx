@@ -34,28 +34,28 @@ const Index = () => {
 
     updateBackground();
     
-    // Setup cybersecurity-themed cursor effect in dark mode
+    // Setup terminal-themed cursor effect in dark mode
     const setupCursorEffect = () => {
       if (document.documentElement.classList.contains('dark')) {
         const cursorTrailer = document.createElement('div');
-        cursorTrailer.className = 'pointer-events-none fixed w-6 h-6 rounded-full bg-primary/20 z-50 opacity-0 transition-opacity duration-300 backdrop-blur-sm';
+        cursorTrailer.className = 'pointer-events-none fixed w-4 h-4 bg-primary/40 z-50 opacity-0 transition-opacity duration-300';
         document.body.appendChild(cursorTrailer);
         
-        // Add digital code ring around cursor
-        const cursorRing = document.createElement('div');
-        cursorRing.className = 'pointer-events-none fixed w-16 h-16 border border-primary/20 rounded-full z-40 opacity-0 transition-all duration-500';
-        document.body.appendChild(cursorRing);
+        // Add terminal-style blinking cursor
+        const terminalCursor = document.createElement('div');
+        terminalCursor.className = 'pointer-events-none fixed w-2 h-5 bg-green-500 z-40 animate-blink opacity-0 transition-opacity duration-300';
+        document.body.appendChild(terminalCursor);
         
         const updateCursorPosition = (e: MouseEvent) => {
           const { clientX, clientY } = e;
           
           setTimeout(() => {
-            cursorTrailer.style.transform = `translate(${clientX - 12}px, ${clientY - 12}px)`;
+            cursorTrailer.style.transform = `translate(${clientX - 8}px, ${clientY - 8}px)`;
             cursorTrailer.style.opacity = '1';
             
-            cursorRing.style.transform = `translate(${clientX - 32}px, ${clientY - 32}px)`;
-            cursorRing.style.opacity = '0.6';
-          }, 100);
+            terminalCursor.style.transform = `translate(${clientX}px, ${clientY - 10}px)`;
+            terminalCursor.style.opacity = '0.6';
+          }, 50);
         };
         
         document.addEventListener('mousemove', updateCursorPosition);
@@ -64,7 +64,7 @@ const Index = () => {
           document.removeEventListener('mousemove', updateCursorPosition);
           if (cursorTrailer.parentNode) {
             cursorTrailer.parentNode.removeChild(cursorTrailer);
-            cursorRing.parentNode.removeChild(cursorRing);
+            terminalCursor.parentNode.removeChild(terminalCursor);
           }
         };
       }
@@ -72,7 +72,7 @@ const Index = () => {
     
     const cleanupCursor = setupCursorEffect();
     
-    // Observer for animations with code-like reveal effect
+    // Observer for animations with terminal-like reveal effect
     const observeElements = () => {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -97,36 +97,23 @@ const Index = () => {
         observer.observe(section);
       });
       
-      // Add hacking-style parallax effect for dark mode
-      if (document.documentElement.classList.contains('dark')) {
-        const parallaxElements = document.querySelectorAll('.parallax');
-        
-        const handleMouseMove = (e: MouseEvent) => {
-          const x = e.clientX / window.innerWidth;
-          const y = e.clientY / window.innerHeight;
-          
-          parallaxElements.forEach((elem) => {
-            const el = elem as HTMLElement;
-            const speed = parseFloat(el.getAttribute('data-speed') || '0.05');
-            const moveX = (x - 0.5) * speed * 60;
-            const moveY = (y - 0.5) * speed * 60;
-            el.style.transform = `translate(${moveX}px, ${moveY}px)`;
-          });
-        };
-        
-        document.addEventListener('mousemove', handleMouseMove);
-        return () => document.removeEventListener('mousemove', handleMouseMove);
-      }
-      
       // Add digital rain effect in dark mode
       if (document.documentElement.classList.contains('dark')) {
         const createDigitalRain = () => {
           const rain = document.createElement('div');
-          rain.className = 'fixed inset-0 pointer-events-none z-0 opacity-10';
+          rain.className = 'fixed inset-0 pointer-events-none z-0 opacity-5';
           rain.id = 'digital-rain';
-          document.body.appendChild(rain);
           
-          // This would be implemented in CSS, see below for the addition
+          let html = '';
+          for (let i = 0; i < 25; i++) {
+            let line = '';
+            for (let j = 0; j < 40; j++) {
+              line += Math.random() > 0.5 ? '1' : '0';
+            }
+            html += `<div>${line}</div>`;
+          }
+          rain.innerHTML = html;
+          document.body.appendChild(rain);
         };
         
         createDigitalRain();
@@ -143,8 +130,8 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
-      {/* Cybersecurity-themed cursor effect (only shows in dark mode) */}
+    <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden dark:bg-black">
+      {/* Terminal-themed cursor effect (only shows in dark mode) */}
       <Navbar />
       <HeroSection />
       <AboutSection />

@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,83 +7,83 @@
 
 @layer base {
   :root {
-    --background: 220 33% 98%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 140 60% 40%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 250 96% 61%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 249 59% 58%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 140 60% 40%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 140 60% 40%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 0% 15%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 140 60% 40%;
   }
 
   .dark {
-    --background: 222.2 47% 5%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 90%;
 
-    --card: 222.2 47% 7%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 90%;
 
-    --popover: 222.2 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 90%;
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 140 60% 50%;
+    --primary-foreground: 0 0% 10%;
 
-    --secondary: 250 95% 70%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 249 59% 58%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 140 60% 50%;
+    --accent-foreground: 0 0% 90%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 90%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 140 60% 50%;
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 140 60% 50%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 140 60% 50%;
   }
 }
 
@@ -94,11 +94,12 @@
 
   html {
     @apply scroll-smooth;
+    font-family: 'Fira Code', monospace;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Fira Code', monospace;
   }
 
   .code-font {
@@ -114,7 +115,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Fira Code', monospace;
+    @apply font-bold;
   }
   
   ::selection {
@@ -127,7 +129,7 @@
   }
 
   .dark code {
-    @apply text-blue-300 code-font;
+    @apply text-green-400 code-font;
   }
 }
 
@@ -150,13 +152,13 @@
 }
 
 .gradient-text {
-  @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-primary to-white bg-clip-text text-transparent;
   background-size: 200% auto;
   animation: gradient-move 3s ease infinite;
 }
 
 .glass-card {
-  @apply bg-white/70 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-white/5;
+  @apply bg-white/70 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-primary/10;
   position: relative;
   overflow: hidden;
 }
@@ -172,7 +174,7 @@
 }
 
 .dark .glass-card::before {
-  background: linear-gradient(125deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 60%);
+  background: linear-gradient(125deg, rgba(0,255,0,0) 40%, rgba(0,255,0,0.05) 50%, rgba(0,255,0,0) 60%);
 }
 
 .animated-border {
@@ -187,7 +189,7 @@
   border-radius: inherit;
   padding: 2px;
   background: linear-gradient(45deg, var(--tw-gradient-stops));
-  @apply from-primary via-secondary to-primary;
+  @apply from-primary to-white/80 dark:from-green-400 dark:to-green-700;
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
@@ -197,16 +199,16 @@
   animation: gradient-move 2s linear infinite;
 }
 
-/* Cybersecurity-themed effects */
+/* Terminal-themed effects */
 .neo-card {
-  @apply relative rounded-xl overflow-hidden dark:bg-black/30 bg-white/80 backdrop-blur-md;
+  @apply relative rounded-md overflow-hidden dark:bg-black/30 bg-white/80 backdrop-blur-md;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 
               0 1px 2px rgba(0, 0, 0, 0.04), 
               0 4px 8px rgba(0, 0, 0, 0.06);
 }
 
 .dark .neo-card {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
+  box-shadow: 0 0 0 1px rgba(0, 255, 0, 0.08),
               0 4px 16px rgba(0, 0, 0, 0.6),
               0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -219,26 +221,26 @@
   pointer-events: none;
 }
 
-/* Enhanced dark mode styles */
+/* Terminal mode styles */
 .dark .glass-card {
-  @apply bg-black/30 backdrop-blur-md border-white/5;
+  @apply bg-black/70 backdrop-blur-md border-green-500/20;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
 }
 
 .dark .gradient-background {
   background: radial-gradient(circle at top right, hsl(var(--primary) / 0.15), transparent 70%),
-              radial-gradient(circle at bottom left, hsl(var(--secondary) / 0.15), transparent 70%);
+              radial-gradient(circle at bottom left, hsl(var(--primary) / 0.15), transparent 70%);
 }
 
 .dark .glow-text {
   text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
 }
 
-/* Cybersecurity-themed grid overlay for dark mode */
+/* Terminal grid overlay for dark mode */
 .dark .cyber-grid {
   background-image: 
-    linear-gradient(rgba(0, 173, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 173, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -250,15 +252,15 @@
   pointer-events: none;
   background: repeating-linear-gradient(
     0deg,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.03) 1px,
+    rgba(0, 255, 0, 0.03),
+    rgba(0, 255, 0, 0.03) 1px,
     transparent 1px,
     transparent 2px
   );
   z-index: 20;
 }
 
-/* Code reveal typing effect */
+/* Terminal typing effect */
 .dark .code-reveal {
   overflow: hidden;
   position: relative;
@@ -287,7 +289,7 @@
   animation: code-cursor 1.5s steps(30) forwards 0.5s;
 }
 
-/* Digital rain effect in dark mode */
+/* Terminal rain effect in dark mode */
 #digital-rain {
   font-family: 'Fira Code', monospace;
   color: hsl(var(--primary) / 0.7);
@@ -296,7 +298,7 @@
   background: linear-gradient(180deg, transparent, hsl(var(--background)));
 }
 
-/* New cybersecurity-themed animations */
+/* New terminal-themed animations */
 @keyframes scan {
   0% {
     transform: translateY(-100%);
@@ -372,13 +374,23 @@
   100% { transform: rotate(360deg); }
 }
 
-@keyframes morph {
-  0% { border-radius: '60% 40% 30% 70%/60% 30% 70% 40%'; }
-  50% { border-radius: '30% 60% 70% 40%/50% 60% 30% 60%'; }
-  100% { border-radius: '60% 40% 30% 70%/60% 30% 70% 40%'; }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-/* Enhanced dark mode scrollbar */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Terminal mode scrollbar */
 .dark ::-webkit-scrollbar {
   width: 8px;
 }
@@ -389,14 +401,39 @@
 
 .dark ::-webkit-scrollbar-thumb {
   background: hsl(var(--primary) / 0.3);
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.5);
 }
 
-/* Cybersecurity animations */
+/* Terminal animations */
 .animate-scan {
   animation: scan 2s linear infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Terminal prompt styling */
+.terminal-prompt::before {
+  content: '> ';
+  color: hsl(var(--primary));
+}
+
+/* Button terminal style */
+.terminal-button {
+  @apply border border-green-500 bg-black text-green-500 hover:bg-green-500/10;
+}
+
+/* Terminal card */
+.terminal-card {
+  @apply border border-green-500/30 bg-black/80 text-green-400 rounded-md p-4;
+}
+
+/* Terminal text */
+.terminal-text {
+  @apply text-green-500 font-mono;
 }
