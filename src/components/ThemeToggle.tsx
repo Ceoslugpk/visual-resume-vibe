@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { Terminal, Shield } from "lucide-react";
+import { Terminal, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ThemeToggle: React.FC = () => {
@@ -59,8 +59,8 @@ const ThemeToggle: React.FC = () => {
               : 'translate-y-10 rotate-90 opacity-0'
           }`} 
         />
-        <Shield 
-          className={`h-4 w-4 text-green-400 absolute transition-transform duration-500 ${
+        <Flame 
+          className={`h-4 w-4 text-red-500 absolute transition-transform duration-500 ${
             theme === 'dark' 
               ? 'translate-y-0 rotate-0 opacity-100' 
               : '-translate-y-10 -rotate-90 opacity-0'
@@ -72,17 +72,17 @@ const ThemeToggle: React.FC = () => {
       {/* Terminal cursor effect */}
       <div className={`
         absolute inset-0 rounded-md transition-all duration-700
-        ${theme === "dark" ? "border border-green-400/30" : ""}
+        ${theme === "dark" ? "border border-red-400/30" : ""}
       `}></div>
       
       {/* Scan line effect */}
       <div className="absolute inset-0 rounded-md overflow-hidden pointer-events-none opacity-0 dark:opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-400/5 to-transparent animate-scan"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-400/5 to-transparent animate-scan"></div>
       </div>
 
       {/* Binary code overlay in dark mode */}
       <div className="absolute inset-0 rounded-md overflow-hidden opacity-0 dark:opacity-20 pointer-events-none">
-        <div className="h-full w-full text-[0.4rem] text-green-400/60 overflow-hidden select-none font-mono">
+        <div className="h-full w-full text-[0.4rem] text-red-400/60 overflow-hidden select-none font-mono">
           10101
         </div>
       </div>

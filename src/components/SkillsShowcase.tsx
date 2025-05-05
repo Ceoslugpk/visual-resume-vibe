@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
-import { Code, Shield, Database, Terminal, Server, Lock } from 'lucide-react';
+import { Code, Flame, Database, Terminal, Server, Skull } from 'lucide-react';
 
 interface SkillCard {
   icon: React.ReactNode;
@@ -19,7 +19,7 @@ const SkillsShowcase: React.FC = () => {
       description: "Identifying vulnerabilities in systems and networks using advanced terminal-based tools and techniques.",
     },
     {
-      icon: <Shield size={32} />,
+      icon: <Skull size={32} />,
       title: "Security Hardening",
       description: "Implementing robust security measures to protect systems from unauthorized access and cyber threats.",
     },
@@ -39,7 +39,7 @@ const SkillsShowcase: React.FC = () => {
       description: "Designing and implementing secure network architectures with advanced monitoring capabilities.",
     },
     {
-      icon: <Lock size={32} />,
+      icon: <Flame size={32} />,
       title: "Security Auditing",
       description: "Conducting thorough security assessments and compliance audits to ensure robust protection.",
     }
@@ -80,9 +80,12 @@ const SkillsShowcase: React.FC = () => {
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl"></div>
       <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/5 dark:bg-secondary/10 rounded-full blur-3xl"></div>
       
+      {/* Pentagram overlay for subtle devilish effect */}
+      <div className="hidden dark:block pentagram-overlay"></div>
+      
       {/* Binary background for terminal theme (dark mode only) */}
       <div className="hidden dark:block absolute inset-0 overflow-hidden opacity-5 pointer-events-none">
-        <div className="absolute top-0 left-0 code-font text-[0.5rem] leading-tight opacity-30 text-green-500">
+        <div className="absolute top-0 left-0 code-font text-[0.5rem] leading-tight opacity-30 text-red-500">
           {Array.from({ length: 40 }).map((_, i) => (
             <div key={i}>
               {Array.from({ length: 120 }).map((_, j) => (
@@ -97,11 +100,11 @@ const SkillsShowcase: React.FC = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-green-400 terminal-prompt">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-red-400 terminal-prompt devilish-text">
             Security Expertise
           </h2>
-          <div className="w-24 h-px bg-gradient-to-r from-primary to-white dark:from-green-400 dark:to-green-700 mx-auto mb-8"></div>
-          <p className="text-muted-foreground max-w-2xl mx-auto dark:text-green-300/80">
+          <div className="w-24 h-px bg-gradient-to-r from-primary to-white dark:from-red-700 dark:to-red-400 mx-auto mb-8"></div>
+          <p className="text-muted-foreground max-w-2xl mx-auto dark:text-red-300/80">
             Specialized cybersecurity skills to protect systems and data from emerging threats.
           </p>
         </div>
@@ -111,7 +114,7 @@ const SkillsShowcase: React.FC = () => {
             <div
               key={index}
               ref={el => cardsRef.current[index] = el}
-              className="dark:terminal-card rounded-md overflow-hidden shadow-lg transition-all duration-300 border border-white/10 dark:border-green-500/20 section group hover:border-primary/50 dark:hover:border-green-500/40"
+              className="dark:terminal-card rounded-md overflow-hidden shadow-lg transition-all duration-300 border border-white/10 dark:border-red-500/20 section group hover:border-primary/50 dark:hover:border-red-500/40"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="p-8 flex flex-col items-center text-center h-full relative overflow-hidden">
@@ -121,7 +124,7 @@ const SkillsShowcase: React.FC = () => {
                 </div>
                 
                 {/* Skill icon */}
-                <div className="w-16 h-16 rounded-md bg-white dark:bg-black border border-black/10 dark:border-green-500/40 flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300 relative text-primary dark:text-green-400">
+                <div className="w-16 h-16 rounded-md bg-white dark:bg-black border border-black/10 dark:border-red-500/40 flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300 relative text-primary dark:text-red-400">
                   {skill.icon}
                   
                   {/* Pulse effect in dark mode */}
@@ -129,18 +132,18 @@ const SkillsShowcase: React.FC = () => {
                 </div>
                 
                 {/* Title with terminal decoration in dark mode */}
-                <h3 className="text-xl font-semibold mb-4 relative dark:text-green-400">
-                  <span className="hidden dark:inline-block absolute -left-4 text-primary/50 code-font text-green-500">
+                <h3 className="text-xl font-semibold mb-4 relative dark:text-red-400">
+                  <span className="hidden dark:inline-block absolute -left-4 text-primary/50 code-font text-red-500">
                     &gt;
                   </span>
                   {skill.title}
                 </h3>
                 
-                <p className="text-muted-foreground dark:text-green-400/70">{skill.description}</p>
+                <p className="text-muted-foreground dark:text-red-400/70">{skill.description}</p>
                 
                 {/* Terminal command pattern overlay in dark mode */}
                 <div className="hidden dark:block absolute bottom-0 right-0 w-20 h-20 opacity-10 pointer-events-none">
-                  <div className="text-[0.5rem] text-green-500 font-mono text-right">
+                  <div className="text-[0.5rem] text-red-500 font-mono text-right">
                     $ sudo<br />
                     $ nmap<br />
                     $ ssh<br />

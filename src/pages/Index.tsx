@@ -38,12 +38,12 @@ const Index = () => {
     const setupCursorEffect = () => {
       if (document.documentElement.classList.contains('dark')) {
         const cursorTrailer = document.createElement('div');
-        cursorTrailer.className = 'pointer-events-none fixed w-4 h-4 bg-primary/40 z-50 opacity-0 transition-opacity duration-300';
+        cursorTrailer.className = 'pointer-events-none fixed w-4 h-4 bg-red-500/40 z-50 opacity-0 transition-opacity duration-300';
         document.body.appendChild(cursorTrailer);
         
         // Add terminal-style blinking cursor
         const terminalCursor = document.createElement('div');
-        terminalCursor.className = 'pointer-events-none fixed w-2 h-5 bg-green-500 z-40 animate-blink opacity-0 transition-opacity duration-300';
+        terminalCursor.className = 'pointer-events-none fixed w-2 h-5 bg-red-500 z-40 animate-blink opacity-0 transition-opacity duration-300';
         document.body.appendChild(terminalCursor);
         
         const updateCursorPosition = (e: MouseEvent) => {
@@ -114,6 +114,11 @@ const Index = () => {
           }
           rain.innerHTML = html;
           document.body.appendChild(rain);
+          
+          // Add subtle pentagram background
+          const pentagrams = document.createElement('div');
+          pentagrams.className = 'fixed inset-0 pointer-events-none z-0 pentagram-overlay';
+          document.body.appendChild(pentagrams);
         };
         
         createDigitalRain();
