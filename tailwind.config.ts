@@ -68,6 +68,14 @@ export default {
 					'purple': '#8B5CF6',
 					'dark': '#1A1F2C',
 					'light': '#F6F6F7'
+				},
+				// Add cybersecurity themed colors
+				cyber: {
+					blue: '#0098FF',
+					green: '#00FF9D',
+					red: '#FF3E3E',
+					purple: '#8B5CF6',
+					dark: '#0C0E16'
 				}
 			},
 			borderRadius: {
@@ -169,6 +177,32 @@ export default {
 					'0%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
 					'50%': { borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' },
 					'100%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' }
+				},
+				// Add cybersecurity themed animations
+				'scan': {
+					'0%': { transform: 'translateY(-100%)', opacity: '0' },
+					'50%': { opacity: '1' },
+					'100%': { transform: 'translateY(100%)', opacity: '0' }
+				},
+				'code-typing': {
+					'0%': { width: '100%' },
+					'100%': { width: '0' }
+				},
+				'code-cursor': {
+					'0%': { left: '0' },
+					'100%': { left: '100%' }
+				},
+				'glitch': {
+					'0%': { transform: 'translate(0)' },
+					'20%': { transform: 'translate(-5px, 5px)' },
+					'40%': { transform: 'translate(-5px, -5px)' },
+					'60%': { transform: 'translate(5px, 5px)' },
+					'80%': { transform: 'translate(5px, -5px)' },
+					'100%': { transform: 'translate(0)' }
+				},
+				'pulse-blue': {
+					'0%, 100%': { boxShadow: '0 0 0 0 rgba(0, 152, 255, 0)' },
+					'50%': { boxShadow: '0 0 0 10px rgba(0, 152, 255, 0.3)' }
 				}
 			},
 			animation: {
@@ -190,7 +224,13 @@ export default {
 				'ripple': 'ripple 1s ease-out',
 				'shimmer': 'shimmer 2s infinite',
 				'spin-slow': 'spin-slow 12s linear infinite',
-				'morph': 'morph 8s ease-in-out infinite'
+				'morph': 'morph 8s ease-in-out infinite',
+				// Add cybersecurity themed animations
+				'scan': 'scan 2s linear infinite',
+				'code-typing': 'code-typing 1.5s steps(30) forwards',
+				'code-cursor': 'code-cursor 1.5s steps(30) forwards',
+				'glitch': 'glitch 1s ease-in-out infinite',
+				'pulse-blue': 'pulse-blue 2s infinite'
 			}
 		}
 	},

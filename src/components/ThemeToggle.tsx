@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Shield, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ThemeToggle: React.FC = () => {
@@ -59,7 +59,7 @@ const ThemeToggle: React.FC = () => {
               : 'translate-y-10 rotate-90 opacity-0'
           }`} 
         />
-        <Moon 
+        <Shield 
           className={`h-4 w-4 text-blue-400 absolute transition-transform duration-500 ${
             theme === 'dark' 
               ? 'translate-y-0 rotate-0 opacity-100' 
@@ -79,9 +79,19 @@ const ThemeToggle: React.FC = () => {
         ${theme === "light" ? "opacity-100" : "opacity-0"}
       `}></div>
       
-      {/* Radial ripple effect on click */}
+      {/* Digital scan effect - cybersecurity themed */}
       <div className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
         <span className="absolute inset-0 transform scale-0 rounded-full bg-primary/10 animate-ripple"></span>
+        <div className="absolute inset-0 opacity-0 dark:opacity-30 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent animate-scan"></div>
+        </div>
+      </div>
+
+      {/* Binary code overlay in dark mode */}
+      <div className="absolute inset-0 rounded-full overflow-hidden opacity-0 dark:opacity-20 pointer-events-none">
+        <div className="h-full w-full text-[0.4rem] text-primary/60 overflow-hidden select-none font-mono">
+          {Array(10).fill("10").join('')}
+        </div>
       </div>
     </Button>
   );
